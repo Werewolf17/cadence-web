@@ -28,7 +28,16 @@ import { GRAPH_SHOW_DELAY } from './constants';
 
 export default {
   name: 'workflow-graph',
-  props: ['events', 'isWorkflowRunning', 'selectedEventId'],
+  props: [
+    'childBtnText',
+    'childRoute',
+    'events',
+    'hasChildBtn',
+    'isWorkflowRunning',
+    'parentRoute',
+    'parentBtnText',
+    'selectedEventId',
+  ],
   components: {
     Graph,
     GraphLegend,
@@ -61,6 +70,9 @@ export default {
       this.isGraphLoading = true;
       this.forceRefresh = !this.forceRefresh;
       this.delayedShow();
+    },
+    toggleChildBtn() {
+      this.$emit('toggleChildBtn');
     },
   },
   mounted() {
@@ -127,6 +139,7 @@ export default {
         v-if="!isGraphLoading"
         :events="events"
         :selected-event-id="selectedEventId"
+        @toggleChildBtn="toggleChildBtn"
       />
     </div>
   </div>

@@ -29,7 +29,7 @@ import {
 import debounce from 'lodash-es/debounce';
 import omit from 'lodash-es/omit';
 import Timeline from './components/timeline.vue';
-import WorkflowGraph from './components/workflow-graph';
+import { WorkflowGraph } from '~containers';
 import EventDetail from './components/event-detail.vue';
 import { getDefaultSplitSize } from './helpers';
 import { DetailList, HighlightToggle } from '~components';

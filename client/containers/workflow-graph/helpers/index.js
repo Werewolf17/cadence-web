@@ -23,6 +23,7 @@ export { default as arrangeGraph } from './arrange-graph';
 export { default as arrangeNodes } from './arrange-nodes';
 export { default as cytoscapeLayout } from './cytoscape-layout';
 export { default as findChildEvent } from './find-child-event';
+export { default as getDefaultState } from './get-default-state';
 export { default as getEventConnections } from './get-event-connections';
 export { default as getGraphPanCenter } from './get-graph-pan-center';
 export { default as getTimeIndexPairKey } from './get-time-index-pair-key';

@@ -44,7 +44,6 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(['childRoute', 'toggleChildBtn']),
     zoomToNode(node) {
       const pan = getGraphPanCenter({
         boundingBox: node.boundingBox(),
@@ -90,6 +89,9 @@ export default {
         this.zoomToNode(node);
       }
     },
+    toggleChildBtn() {
+      this.$emit('toggleChildBtn');
+    },
     initView(elements) {
       if (this.cy) {
         this.cy.unmount();
@@ -121,7 +123,7 @@ export default {
         if (eventTarget === cy) {
           if (this.selectedEventId) {
             this.$router.replace({ query: omit(this.$route.query, 'eventId') });
-            store.commit('toggleChildBtn');
+            this.toggleChildBtn();
           }
         }
         // Tap on a node that is not already selected
@@ -163,9 +165,9 @@ export default {
 
       // Currently viewing a child workflow, show parent button
       if (previousExecutionRunId) {
-        store.commit('previousExecutionRoute', previousExecutionRunId);
+        this.$emit('setPreviousExecutionRoute', previousExecutionRunId);
       } else if (parentWorkflowExecution) {
-        store.commit('parentRoute', parentWorkflowExecution);
+        this.$emit('setParentRoute', parentWorkflowExecution);
       }
 
       this.initView(elements);
